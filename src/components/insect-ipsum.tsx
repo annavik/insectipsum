@@ -54,7 +54,7 @@ export const InsectIpsum = () => {
         }}
       >
         <Field>
-          <FieldLabel htmlFor="type">Type</FieldLabel>
+          <span className="text-sm font-medium">Type</span>
           <Select defaultValue={DEFAULT_TYPE} name="type">
             <SelectTrigger>
               <SelectValue />
