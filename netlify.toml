@@ -10,3 +10,8 @@
   from = "/photos/*"
   to = "/.netlify/functions/photos/:splat"
   status = 200
+
+[[redirects]]
+  from = "/text/*"
+  to = "/.netlify/functions/text/:splat"
+  status = 200

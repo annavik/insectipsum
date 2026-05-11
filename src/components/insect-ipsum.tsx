@@ -6,32 +6,56 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import { useText } from "@/lib/useText"
 import { CopyIcon } from "lucide-react"
 import { useState } from "react"
+import { CopyButton } from "./copy-button"
 import { Button } from "./ui/button"
 import { Input } from "./ui/input"
 
+const BASE_URL = "http://localhost:8888"
 const TYPES = [
   { label: "Paragraphs", value: "paragraphs" },
   { label: "Sentences", value: "sentences" },
   { label: "Words", value: "words" },
 ]
+const MIN_COUNT = 1
+const MAX_COUNT = 100
+
+const getTextUrl = ({ count, type }: { count: number; type: string }) =>
+  `${BASE_URL}/text/${type}/${count}`
 
 export const InsectIpsum = () => {
   const [count, setCount] = useState(3)
   const [type, setType] = useState("paragraphs")
+  const [textUrl, setTextUrl] = useState(getTextUrl({ count, type }))
+  const { text, refetch } = useText(textUrl)
 
   return (
     <div>
       <h1 className="mb-6 font-heading text-4xl font-medium text-primary dark:text-foreground">
         Insect Ipsum
       </h1>
-      <div className="mb-8 flex items-end gap-4">
+      <form
+        className="mb-8 flex items-end gap-4"
+        onSubmit={(e) => {
+          e.preventDefault()
+          const newTextUrl = getTextUrl({ count, type })
+
+          if (textUrl === newTextUrl) {
+            refetch()
+          } else {
+            setTextUrl(newTextUrl)
+          }
+        }}
+      >
         <Input
           className="w-24"
+          max={MAX_COUNT}
+          min={MIN_COUNT}
+          onChange={(e) => setCount(Number(e.currentTarget.value))}
           type="number"
           value={count}
-          onChange={(e) => setCount(Number(e.currentTarget.value))}
         />
         <Select value={type} onValueChange={(value) => setType(value)}>
           <SelectTrigger>
@@ -48,6 +72,12 @@ export const InsectIpsum = () => {
           </SelectContent>
         </Select>
         <Button>Generate</Button>
+      </form>
+      <div className="relative mb-8 rounded-lg border bg-muted p-4">
+        <p className="font-mono text-sm">{textUrl}</p>
+        <div className="absolute top-2 right-2">
+          <CopyButton text={textUrl} />
+        </div>
       </div>
       <div className="relative space-y-4 rounded-lg border bg-muted p-12 font-serif">
         <Button
@@ -58,27 +88,9 @@ export const InsectIpsum = () => {
         >
           <CopyIcon />
         </Button>
-        <p>
-          Apis mellifera bombyx mori drosophila melanogaster formica rufa.
-          Mantis religiosa lucanus cervus lampyris noctiluca periplaneta
-          americana. Gryllus campestris vanessa atalanta papilio machaon sphinx
-          ligustri. Vespa crabro libellula depressa carabus coriaceus blatta
-          orientalis.
-        </p>
-        <p>
-          Coccinella septempunctata anax imperator necrophorus vespillo
-          dermestes lardarius. Panorpa communis tipula oleracea sialis lutaria
-          ephemera danica. Cimex lectularius forficula auricularia dytiscus
-          marginalis aeshna cyanea. Melolontha melolontha acheta domesticus
-          hydrophilus piceus geotrupes stercorarius.
-        </p>
-        <p>
-          Chrysis ignita philanthus triangulum bombus terrestris andrena fulva.
-          Deilephila elpenor saturnia pavonia zygaena filipendulae xylocopa
-          violacea. Oryctes nasicornis cerambyx cerdo pyrrhocoris apterus
-          cantharis rustica. Pentatoma rufipes leptophyes punctatissima
-          conocephalus fuscus tetrix subulata.
-        </p>
+        {text.split("\n\n").map((paragraph, index) => (
+          <p key={index}>{paragraph}</p>
+        ))}
       </div>
     </div>
   )
