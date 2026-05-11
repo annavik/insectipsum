@@ -31,6 +31,12 @@ export const AboutDialog = () => (
         </DialogDescription>
       </DialogHeader>
       <p className="text-base text-muted-foreground">
+        To keep the tool lightweight, text and images are generated without AI.
+        The content can be accessed from the web interface or from API. If you
+        are curious about technical details, check out the{" "}
+        <Link href={GITHUB_REPO_URL}>code repo</Link>.
+      </p>
+      <p className="text-base text-muted-foreground">
         The stickers in the header come from{" "}
         <Link href={STICKERS_URL}>Flaticon</Link>.
       </p>
@@ -39,11 +45,6 @@ export const AboutDialog = () => (
         <Link href={PHOTOS_URL}>Unsplash</Link>. They all have a{" "}
         <Link href={LICENSE_URL}>free license</Link> and can be downloaded and
         used without permission.
-      </p>
-      <p className="text-base text-muted-foreground">
-        To keep the tool lightweight, text and images are generated without AI.
-        If you are curious about technical details, check out the{" "}
-        <Link href={GITHUB_REPO_URL}>code repo</Link>.
       </p>
     </DialogContent>
   </Dialog>
