@@ -1,6 +1,5 @@
+import { GITHUB_USER_URL } from "@/lib/constants"
 import { HeartIcon } from "lucide-react"
-
-const GITHUB_URL = "https://github.com/annavik"
 
 export const Footer = () => (
   <div className="flex items-center justify-center gap-1.5 font-cursive text-lg text-muted-foreground">
@@ -10,7 +9,7 @@ export const Footer = () => (
       by{" "}
       <a
         className="text-foreground underline"
-        href={GITHUB_URL}
+        href={GITHUB_USER_URL}
         rel="noopener noreferrer"
         target="_blank"
       >

@@ -1,4 +1,5 @@
 import type { ReactNode } from "react"
+import { AboutDialog } from "./components/about-dialog"
 import { Footer } from "./components/footer"
 import { Header } from "./components/header"
 import { InsectIpsum } from "./components/insect-ipsum"
@@ -8,7 +9,8 @@ import { ThemeToggle } from "./components/theme-toggle"
 export function App() {
   return (
     <div className="h-screen w-screen min-w-[320px]">
-      <div className="fixed top-4 right-4 z-1 flex items-center gap-4">
+      <div className="top-0 right-0 z-1 flex w-full items-center justify-end gap-4 p-4 md:fixed">
+        <AboutDialog />
         <ThemeToggle />
       </div>
       <div className="border-b p-6 py-12 md:px-16 md:py-8">
@@ -21,12 +23,12 @@ export function App() {
           <InsectIpsum />
         </Content>
       </div>
-      <div className="border-b bg-background p-6 md:p-16 md:pb-32">
+      <div className="bg-background p-6 md:p-16 md:pb-32">
         <Content>
           <Photos />
         </Content>
       </div>
-      <div className="p-6 md:px-16 md:py-12">
+      <div className="border-t p-6 md:px-16 md:py-12">
         <Content>
           <Footer />
         </Content>
