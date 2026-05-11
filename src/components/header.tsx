@@ -7,10 +7,10 @@ export const Header = () => {
   const resolvedTheme = theme === "system" ? getSystemTheme() : theme
 
   return (
-    <div className="flex items-center gap-8">
+    <div className="flex flex-col items-center gap-8 text-center md:flex-row md:text-left">
       <img
         alt=""
-        className="h-48"
+        className="h-32 md:h-48"
         src={resolvedTheme === "light" ? "/butterfly.png" : "/moths.png"}
       />
       <div>

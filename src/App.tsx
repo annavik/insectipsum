@@ -8,27 +8,27 @@ import { Button } from "./components/ui/button"
 
 export function App() {
   return (
-    <div className="h-screen w-screen">
+    <div className="h-screen w-screen min-w-[320px]">
       <div className="fixed top-4 right-4 z-1 flex items-center gap-4">
         <Button variant="ghost">About</Button>
         <ThemeToggle />
       </div>
-      <div className="border-b bg-muted px-16 py-8">
+      <div className="border-b bg-muted p-6 py-12 md:px-16 md:py-8">
         <Content>
           <Header />
         </Content>
       </div>
-      <div className="p-16 pt-32">
+      <div className="p-6 md:p-16 md:pb-32">
         <Content>
           <InsectIpsum />
         </Content>
       </div>
-      <div className="p-16 pb-32">
+      <div className="p-6 md:p-16 md:pb-32">
         <Content>
           <Photos />
         </Content>
       </div>
-      <div className="border-t bg-muted px-16 py-12">
+      <div className="border-t bg-muted p-6 md:px-16 md:py-12">
         <Content>
           <Footer />
         </Content>
@@ -38,7 +38,7 @@ export function App() {
 }
 
 const Content = ({ children }: { children: ReactNode }) => (
-  <div className="mx-auto max-w-3xl">{children}</div>
+  <div className="mx-auto w-full max-w-3xl overflow-hidden">{children}</div>
 )
 
 export default App

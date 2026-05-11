@@ -6,9 +6,8 @@ const MAX_SIZE = 1024
 const QUALITY = 85
 
 export default async (req: Request) => {
-  const url = new URL(req.url)
-
   // Extract dimensions from the path
+  const url = new URL(req.url)
   const parts = url.pathname.split("/").filter(Boolean)
   const width = parseInt(parts[1])
   const height = parseInt(parts[2])
