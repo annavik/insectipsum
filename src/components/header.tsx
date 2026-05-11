@@ -14,7 +14,7 @@ export const Header = () => {
         src={resolvedTheme === "light" ? "/butterfly.png" : "/moths.png"}
       />
       <div>
-        <h1 className="mb-6 font-heading text-5xl font-medium text-primary dark:text-foreground">
+        <h1 className="mb-6 font-heading text-4xl font-medium text-primary md:text-5xl dark:text-foreground">
           Place Insects
         </h1>
         <p className="text-muted-foreground">

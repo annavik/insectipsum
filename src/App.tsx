@@ -36,7 +36,7 @@ export function App() {
 }
 
 const Content = ({ children }: { children: ReactNode }) => (
-  <div className="mx-auto w-full max-w-3xl overflow-hidden">{children}</div>
+  <div className="mx-auto w-full max-w-3xl">{children}</div>
 )
 
 export default App

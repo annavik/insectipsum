@@ -18,7 +18,7 @@ export const Photos = () => {
 
   return (
     <div className="space-y-6 md:space-y-8">
-      <h1 className="font-heading text-4xl font-medium text-primary dark:text-foreground">
+      <h1 className="font-heading text-3xl font-medium text-primary md:text-4xl dark:text-foreground">
         Photos
       </h1>
       <form
@@ -57,8 +57,12 @@ export const Photos = () => {
         </Field>
         <Button>Generate</Button>
       </form>
-      <div className="relative rounded-lg border bg-muted p-4">
-        <p className="font-mono text-sm">{photoUrl}</p>
+      <div className="relative rounded-lg border bg-muted">
+        <div className="overflow-x-auto">
+          <div className="w-max p-4 pr-12">
+            <p className="font-mono text-sm">{photoUrl}</p>
+          </div>
+        </div>
         <div className="absolute top-2 right-2 rounded-lg bg-muted">
           <CopyButton text={photoUrl} />
         </div>

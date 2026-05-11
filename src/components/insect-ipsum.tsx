@@ -30,15 +30,15 @@ export const InsectIpsum = () => {
   const [textUrl, setTextUrl] = useState(
     getTextUrl({ count: DEFAULT_COUNT, type: DEFAULT_TYPE })
   )
-  const { text, refetch } = useText(textUrl)
+  const { text, loading, refetch } = useText(textUrl)
 
   return (
     <div className="space-y-6 md:space-y-8">
-      <h1 className="font-heading text-4xl font-medium text-primary dark:text-foreground">
+      <h1 className="font-heading text-3xl font-medium text-primary md:text-4xl dark:text-foreground">
         Insect Ipsum
       </h1>
       <form
-        className="mb-8 flex flex-wrap items-end gap-4"
+        className="flex flex-wrap items-end gap-4"
         onSubmit={(e) => {
           e.preventDefault()
 
@@ -73,7 +73,7 @@ export const InsectIpsum = () => {
         <Field>
           <FieldLabel htmlFor="count">Count</FieldLabel>
           <Input
-            className="w-24"
+            className="w-16"
             defaultValue={3}
             id="count"
             max={MAX_COUNT}
@@ -84,8 +84,12 @@ export const InsectIpsum = () => {
         </Field>
         <Button>Generate</Button>
       </form>
-      <div className="relative mb-8 rounded-lg border bg-muted p-4">
-        <p className="font-mono text-sm">{textUrl}</p>
+      <div className="relative rounded-lg border bg-muted">
+        <div className="overflow-x-auto">
+          <div className="w-max p-4 pr-12">
+            <p className="font-mono text-sm">{textUrl}</p>
+          </div>
+        </div>
         <div className="absolute top-2 right-2 rounded-lg bg-muted">
           <CopyButton text={textUrl} />
         </div>
@@ -94,12 +98,12 @@ export const InsectIpsum = () => {
         <div className="absolute top-2 right-2 rounded-lg bg-muted">
           <CopyButton text={text} />
         </div>
-        {text ? (
+        {loading ? (
+          <Loader2Icon className="mx-auto size-12 animate-spin text-primary" />
+        ) : (
           text
             .split("\n\n")
             .map((paragraph, index) => <p key={index}>{paragraph}</p>)
-        ) : (
-          <Loader2Icon className="mx-auto size-12 animate-spin text-primary" />
         )}
       </div>
     </div>
