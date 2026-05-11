@@ -6,13 +6,15 @@ import { Field, FieldLabel } from "./field"
 import { Button, buttonVariants } from "./ui/button"
 import { Input } from "./ui/input"
 
+const DEFAULT_WIDTH = 200
+const DEFAULT_HEIGHT = 300
 const MIN_SIZE = 1
 const MAX_SIZE = 1024
 
 export const Photos = () => {
-  const [width, setWidth] = useState(200)
-  const [height, setHeight] = useState(300)
-  const [photoUrl, setPhotoUrl] = useState(getPhotoUrl({ width, height }))
+  const [photoUrl, setPhotoUrl] = useState(
+    getPhotoUrl({ width: DEFAULT_WIDTH, height: DEFAULT_HEIGHT })
+  )
 
   return (
     <div className="space-y-6 md:space-y-8">
@@ -23,6 +25,9 @@ export const Photos = () => {
         className="flex flex-wrap items-end gap-4"
         onSubmit={(e) => {
           e.preventDefault()
+
+          const width = e.target.width.value
+          const height = e.target.height.value
           setPhotoUrl(getPhotoUrl({ width, height }))
         }}
       >
@@ -30,26 +35,24 @@ export const Photos = () => {
           <FieldLabel htmlFor="width">Width</FieldLabel>
           <Input
             className="w-24"
+            defaultValue={DEFAULT_WIDTH}
             id="width"
             max={MAX_SIZE}
             min={MIN_SIZE}
-            onChange={(e) => setWidth(Number(e.currentTarget.value))}
             required
             type="number"
-            value={width}
           />
         </Field>
         <Field>
           <FieldLabel htmlFor="height">Height</FieldLabel>
           <Input
             className="w-24"
+            defaultValue={DEFAULT_HEIGHT}
             id="height"
             max={MAX_SIZE}
             min={MIN_SIZE}
-            onChange={(e) => setHeight(Number(e.currentTarget.value))}
             required
             type="number"
-            value={height}
           />
         </Field>
         <Button>Generate</Button>
@@ -60,12 +63,12 @@ export const Photos = () => {
           <CopyButton text={photoUrl} />
         </div>
       </div>
-      <Image src={photoUrl} filename={`${width}x${height}.jpg`} />
+      <Image src={photoUrl} />
     </div>
   )
 }
 
-const Image = ({ src }: { filename: string; src: string }) => (
+const Image = ({ src }: { src: string }) => (
   <div className="relative flex min-h-24 items-center justify-center overflow-hidden rounded-lg border bg-muted">
     <img alt="Photo" className="max-h-full max-w-full" src={src} />
     <div className="absolute top-2 right-2 rounded-lg bg-muted">

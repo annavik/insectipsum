@@ -14,18 +14,21 @@ import { Field, FieldLabel } from "./field"
 import { Button } from "./ui/button"
 import { Input } from "./ui/input"
 
+const DEFAULT_TYPE = "paragraphs"
 const TYPES = [
   { label: "Paragraphs", value: "paragraphs" },
   { label: "Sentences", value: "sentences" },
   { label: "Words", value: "words" },
 ]
+
+const DEFAULT_COUNT = 3
 const MIN_COUNT = 1
 const MAX_COUNT = 100
 
 export const InsectIpsum = () => {
-  const [count, setCount] = useState(3)
-  const [type, setType] = useState("paragraphs")
-  const [textUrl, setTextUrl] = useState(getTextUrl({ count, type }))
+  const [textUrl, setTextUrl] = useState(
+    getTextUrl({ count: DEFAULT_COUNT, type: DEFAULT_TYPE })
+  )
   const { text, refetch } = useText(textUrl)
 
   return (
@@ -37,6 +40,9 @@ export const InsectIpsum = () => {
         className="mb-8 flex flex-wrap items-end gap-4"
         onSubmit={(e) => {
           e.preventDefault()
+
+          const count = e.target.count.value
+          const type = e.target.type.value
           const newTextUrl = getTextUrl({ count, type })
 
           if (textUrl === newTextUrl) {
@@ -48,8 +54,8 @@ export const InsectIpsum = () => {
       >
         <Field>
           <FieldLabel htmlFor="type">Type</FieldLabel>
-          <Select value={type} onValueChange={(value) => setType(value)}>
-            <SelectTrigger id="type">
+          <Select defaultValue={DEFAULT_TYPE} name="type">
+            <SelectTrigger>
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
@@ -67,12 +73,12 @@ export const InsectIpsum = () => {
           <FieldLabel htmlFor="count">Count</FieldLabel>
           <Input
             className="w-24"
+            defaultValue={3}
             id="count"
             max={MAX_COUNT}
             min={MIN_COUNT}
-            onChange={(e) => setCount(Number(e.currentTarget.value))}
+            required
             type="number"
-            value={count}
           />
         </Field>
         <Button>Generate</Button>
