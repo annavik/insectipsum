@@ -7,13 +7,13 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { useText } from "@/lib/useText"
+import { getTextUrl } from "@/lib/utils"
 import { useState } from "react"
 import { CopyButton } from "./copy-button"
 import { Field, FieldLabel } from "./field"
 import { Button } from "./ui/button"
 import { Input } from "./ui/input"
 
-const BASE_URL = "http://localhost:8888"
 const TYPES = [
   { label: "Paragraphs", value: "paragraphs" },
   { label: "Sentences", value: "sentences" },
@@ -21,9 +21,6 @@ const TYPES = [
 ]
 const MIN_COUNT = 1
 const MAX_COUNT = 100
-
-const getTextUrl = ({ count, type }: { count: number; type: string }) =>
-  `${BASE_URL}/text/${type}/${count}`
 
 export const InsectIpsum = () => {
   const [count, setCount] = useState(3)

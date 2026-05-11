@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils"
+import { cn, getPhotoUrl } from "@/lib/utils"
 import { ExternalLinkIcon } from "lucide-react"
 import { useState } from "react"
 import { CopyButton } from "./copy-button"
@@ -6,12 +6,8 @@ import { Field, FieldLabel } from "./field"
 import { Button, buttonVariants } from "./ui/button"
 import { Input } from "./ui/input"
 
-const BASE_URL = "http://localhost:8888"
 const MIN_SIZE = 1
 const MAX_SIZE = 1024
-
-const getPhotoUrl = ({ width, height }: { width: number; height: number }) =>
-  `${BASE_URL}/photos/${width}/${height}`
 
 export const Photos = () => {
   const [width, setWidth] = useState(200)
