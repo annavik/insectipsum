@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 import { cn, getPhotoUrl } from "@/lib/utils"
-import { ExternalLinkIcon } from "lucide-react"
-import { useState } from "react"
+import { ExternalLinkIcon, Loader2Icon } from "lucide-react"
+import { useEffect, useState } from "react"
 import { CopyButton } from "./copy-button"
 import { Field, FieldLabel } from "./field"
 import { Button, buttonVariants } from "./ui/button"
@@ -72,18 +73,38 @@ export const Photos = () => {
   )
 }
 
-const Image = ({ src }: { src: string }) => (
-  <div className="relative flex min-h-24 items-center justify-center overflow-hidden rounded-lg border bg-muted">
-    <img alt="Photo" className="max-h-full max-w-full" src={src} />
-    <div className="absolute top-2 right-2 rounded-lg bg-muted">
-      <a
-        className={cn("", buttonVariants({ size: "icon", variant: "outline" }))}
-        href={src}
-        rel="noopener noreferrer"
-        target="_blank"
-      >
-        <ExternalLinkIcon />
-      </a>
+const Image = ({ src }: { src: string }) => {
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => setLoading(true), [src])
+
+  return (
+    <div className="relative flex min-h-24 items-center justify-center overflow-hidden rounded-lg border bg-muted">
+      {loading ? (
+        <Loader2Icon className="absolute z-1 size-12 animate-spin text-foreground" />
+      ) : null}
+      <img
+        alt=""
+        className={cn("max-h-full max-w-full", {
+          "opacity-50": loading,
+        })}
+        src={src}
+        onLoad={() => setLoading(false)}
+        onError={() => setLoading(false)}
+      />
+      <div className="absolute top-2 right-2 rounded-lg bg-muted">
+        <a
+          className={cn(
+            "",
+            buttonVariants({ size: "icon", variant: "outline" })
+          )}
+          href={src}
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <ExternalLinkIcon />
+        </a>
+      </div>
     </div>
-  </div>
-)
+  )
+}
