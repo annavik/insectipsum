@@ -4,13 +4,11 @@ import { Header } from "./components/header"
 import { InsectIpsum } from "./components/insect-ipsum"
 import { Photos } from "./components/photos"
 import { ThemeToggle } from "./components/theme-toggle"
-import { Button } from "./components/ui/button"
 
 export function App() {
   return (
     <div className="h-screen w-screen min-w-[320px]">
       <div className="fixed top-4 right-4 z-1 flex items-center gap-4">
-        <Button variant="ghost">About</Button>
         <ThemeToggle />
       </div>
       <div className="border-b bg-muted p-6 py-12 md:px-16 md:py-8">
@@ -18,7 +16,7 @@ export function App() {
           <Header />
         </Content>
       </div>
-      <div className="p-6 md:p-16 md:pb-32">
+      <div className="p-6 md:p-16 md:pt-32">
         <Content>
           <InsectIpsum />
         </Content>
