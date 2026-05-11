@@ -9,7 +9,7 @@ import { ThemeToggle } from "./components/theme-toggle"
 export function App() {
   return (
     <div className="h-screen w-screen min-w-[320px]">
-      <div className="top-0 right-0 z-1 flex w-full items-center justify-end gap-4 p-4 md:fixed">
+      <div className="top-0 right-0 z-1 flex w-full items-center justify-end gap-4 p-4 md:fixed md:w-auto">
         <AboutDialog />
         <ThemeToggle />
       </div>
