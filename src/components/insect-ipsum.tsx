@@ -13,6 +13,7 @@ import { CopyButton } from "./copy-button"
 import { Field, FieldLabel } from "./field"
 import { Button } from "./ui/button"
 import { Input } from "./ui/input"
+import { Loader2Icon } from "lucide-react"
 
 const DEFAULT_TYPE = "paragraphs"
 const TYPES = [
@@ -93,9 +94,13 @@ export const InsectIpsum = () => {
         <div className="absolute top-2 right-2 rounded-lg bg-muted">
           <CopyButton text={text} />
         </div>
-        {text.split("\n\n").map((paragraph, index) => (
-          <p key={index}>{paragraph}</p>
-        ))}
+        {text ? (
+          text
+            .split("\n\n")
+            .map((paragraph, index) => <p key={index}>{paragraph}</p>)
+        ) : (
+          <Loader2Icon className="mx-auto size-12 animate-spin text-primary" />
+        )}
       </div>
     </div>
   )
