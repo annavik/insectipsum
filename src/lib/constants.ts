@@ -1,8 +1,12 @@
-export const GITHUB_REPO_URL = "https://github.com/annavik/placeinsects"
+export const API_URL = import.meta.env.VITE_API_URL ?? "/"
+
+export const GITHUB_REPO_URL = "https://github.com/annavik/insectipsum"
 
 export const GITHUB_USER_URL = "https://github.com/annavik"
 
 export const LICENSE_URL = "https://unsplash.com/license"
+
+export const LOREM_IPSUM_URL = "https://en.wikipedia.org/wiki/Lorem_ipsum"
 
 export const PHOTOS_URL = "https://unsplash.com/"
 

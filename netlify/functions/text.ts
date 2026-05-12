@@ -1,4 +1,4 @@
-import { wordbank } from "./wordbank"
+import { WORD_BANK } from "./constants"
 
 const MAX_COUNT = 100
 
@@ -55,15 +55,13 @@ export const config = {
 }
 
 // Helpers
-function pick<T>(array: T[]): T {
+const pick = <T>(array: T[]): T => {
   return array[Math.floor(Math.random() * array.length)]
 }
 
-function generateWord(): string {
-  return pick(wordbank)
-}
+const generateWord = (): string => pick(WORD_BANK)
 
-function generateWords(wordCount: number): string {
+const generateWords = (wordCount: number): string => {
   const result: string[] = []
   let totalCount = 0
 
@@ -84,13 +82,13 @@ function generateWords(wordCount: number): string {
   return result.join(" ") + "."
 }
 
-function generateSentence(): string {
+const generateSentence = (): string => {
   const wordCount = 6 + Math.floor(Math.random() * 10) // 6–15 words
 
   return generateWords(wordCount)
 }
 
-function generateParagraph(): string {
+const generateParagraph = (): string => {
   const sentenceCount = 3 + Math.floor(Math.random() * 4) // 3–6 sentences
 
   return Array.from({ length: sentenceCount }, generateSentence).join(" ")

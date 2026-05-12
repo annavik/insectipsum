@@ -15,7 +15,7 @@ export const Header = () => {
       />
       <div>
         <h1 className="mb-6 font-heading text-4xl font-medium text-primary md:text-5xl dark:text-foreground">
-          Place Insects
+          Insect Ipsum
         </h1>
         <p className="text-muted-foreground">
           Have you seen enough of{" "}

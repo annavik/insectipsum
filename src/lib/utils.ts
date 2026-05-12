@@ -1,22 +1,16 @@
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
+import { API_URL } from "./constants"
 
-const API_URL = import.meta.env.VITE_API_URL ?? "/"
+export const cn = (...inputs: ClassValue[]) => twMerge(clsx(inputs))
 
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
-}
+export const getTextUrl = ({ count, type }: { count: number; type: string }) =>
+  `${API_URL}text/${type}/${count}`
 
-export function getTextUrl({ count, type }: { count: number; type: string }) {
-  return `${API_URL}text/${type}/${count}`
-}
-
-export function getPhotoUrl({
+export const getPhotoUrl = ({
   width,
   height,
 }: {
   width: number
   height: number
-}) {
-  return `${API_URL}photos/${width}/${height}`
-}
+}) => `${API_URL}photos/${width}/${height}`

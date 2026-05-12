@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/set-state-in-effect */
 import { cn, getPhotoUrl } from "@/lib/utils"
 import { ExternalLinkIcon, Loader2Icon } from "lucide-react"
 import { useEffect, useState } from "react"
@@ -19,9 +18,16 @@ export const Photos = () => {
 
   return (
     <div className="space-y-6 md:space-y-8">
-      <h1 className="font-heading text-3xl font-medium text-primary md:text-4xl dark:text-foreground">
-        Photos
-      </h1>
+      <div>
+        <h1 className="mb-4 font-heading text-3xl font-medium text-primary md:text-4xl dark:text-foreground">
+          Photos
+        </h1>
+        <p className="text-sm text-muted-foreground">
+          Specify image size, generate a photo and save it! You can also use the
+          URL. Images are served on demand and not stored. They are cached for
+          one hour.
+        </p>
+      </div>
       <form
         className="flex flex-wrap items-end gap-4"
         onSubmit={(e) => {

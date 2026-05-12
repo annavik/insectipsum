@@ -1,4 +1,4 @@
-export const wordbank = [
+export const WORD_BANK = [
   "Coleoptera",
   "Lepidoptera",
   "Diptera",

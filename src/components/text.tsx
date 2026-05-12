@@ -8,12 +8,12 @@ import {
 } from "@/components/ui/select"
 import { useText } from "@/lib/useText"
 import { getTextUrl } from "@/lib/utils"
+import { Loader2Icon } from "lucide-react"
 import { useState } from "react"
 import { CopyButton } from "./copy-button"
 import { Field, FieldLabel } from "./field"
 import { Button } from "./ui/button"
 import { Input } from "./ui/input"
-import { Loader2Icon } from "lucide-react"
 
 const DEFAULT_TYPE = "paragraphs"
 const TYPES = [
@@ -26,7 +26,7 @@ const DEFAULT_COUNT = 3
 const MIN_COUNT = 1
 const MAX_COUNT = 100
 
-export const InsectIpsum = () => {
+export const Text = () => {
   const [textUrl, setTextUrl] = useState(
     getTextUrl({ count: DEFAULT_COUNT, type: DEFAULT_TYPE })
   )
@@ -34,9 +34,15 @@ export const InsectIpsum = () => {
 
   return (
     <div className="space-y-6 md:space-y-8">
-      <h1 className="font-heading text-3xl font-medium text-primary md:text-4xl dark:text-foreground">
-        Insect Ipsum
-      </h1>
+      <div>
+        <h1 className="mb-4 font-heading text-3xl font-medium text-primary md:text-4xl dark:text-foreground">
+          Text
+        </h1>
+        <p className="text-sm text-muted-foreground">
+          Specify how much text to generate and copy it! You can also use the
+          API.
+        </p>
+      </div>
       <form
         className="flex flex-wrap items-end gap-4"
         onSubmit={(e) => {

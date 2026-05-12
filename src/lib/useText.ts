@@ -1,7 +1,6 @@
-/* eslint-disable react-hooks/set-state-in-effect */
 import { useEffect, useState } from "react"
 
-export function useText(textUrl: string) {
+export const useText = (textUrl: string) => {
   const [text, setText] = useState("")
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -12,29 +11,29 @@ export function useText(textUrl: string) {
     setLoading(true)
     setError(null)
 
-    fetch(textUrl)
-      .then((res) => {
+    const fetchText = async () => {
+      try {
+        const res = await fetch(textUrl)
         if (!res.ok) {
           throw new Error(`${res.status} ${res.statusText}`)
         }
 
-        return res.json()
-      })
-      .then((data) => {
+        const data = await res.json()
         if (!cancelled) {
           setText(data.text)
         }
-      })
-      .catch((err) => {
+      } catch (err) {
         if (!cancelled) {
-          setError(err.message)
+          setError(err instanceof Error ? err.message : String(err))
         }
-      })
-      .finally(() => {
+      } finally {
         if (!cancelled) {
           setLoading(false)
         }
-      })
+      }
+    }
+
+    fetchText()
 
     return () => {
       cancelled = true

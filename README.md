@@ -1,4 +1,4 @@
-# Place Insects
+# Insect Ipsum
 
 Insect themed placeholder content for design and code 🐛
 
@@ -16,7 +16,7 @@ Insect themed placeholder content for design and code 🐛
 
 ### Web interface
 
-https://placeinsects.netlify.app/
+http://insectipsum.com/
 
 ### Text API
 
@@ -27,7 +27,7 @@ https://placeinsects.netlify.app/
 - `:type` – The type of content to generate: `paragraphs`, `sentences`, or `words`
 - `:count` – The number of items to generate (1–100)
 
-**Example**: https://placeinsects.netlify.app/text/paragraphs/3
+**Example**: https://insectipsum.com/text/paragraphs/3
 
 ### Photos API
 
@@ -38,7 +38,7 @@ https://placeinsects.netlify.app/
 - `:width` – Image width in pixels (1–1024)
 - `:height` – Image height in pixels (1–1024)
 
-**Example**: https://placeinsects.netlify.app/photos/200/300
+**Example**: https://insectipsum.com/photos/200/300
 
 ## Local development
 
