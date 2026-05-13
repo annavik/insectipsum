@@ -1,20 +1,20 @@
-import { GITHUB_USER_URL } from "@/lib/constants"
+import { FUNDRAISING_URL } from "@/lib/constants"
 import { HeartIcon } from "lucide-react"
 
 export const Footer = () => (
-  <div className="flex items-center justify-center gap-1.5 font-cursive text-lg text-muted-foreground">
-    <span>Made with</span>
-    <HeartIcon className="inline fill-[#E46C3E] stroke-none" />
+  <div className="text-center font-cursive text-lg text-muted-foreground">
     <span>
-      by{" "}
+      If you like the tool, feel free to support{" "}
       <a
         className="text-foreground underline"
-        href={GITHUB_USER_URL}
+        href={FUNDRAISING_URL}
         rel="noopener noreferrer"
         target="_blank"
       >
-        Anna
-      </a>
+        this fundraising
+      </a>{" "}
+      for pollinators{" "}
+      <HeartIcon className="inline fill-[#E46C3E] stroke-none" />
     </span>
   </div>
 )

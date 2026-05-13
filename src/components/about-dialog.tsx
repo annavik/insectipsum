@@ -8,6 +8,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import {
+  FUNDRAISING_URL,
   GITHUB_REPO_URL,
   GITHUB_USER_URL,
   LICENSE_URL,
@@ -27,7 +28,9 @@ export const AboutDialog = () => (
         </DialogTitle>
         <DialogDescription className="text-base">
           This tool was made by me, <Link href={GITHUB_USER_URL}>Anna</Link>.
-          I'm a frontend developer and insect enthusiast 🐛
+          I'm a frontend developer and insect enthusiast 🐛 If you like the
+          tool, feel free to support{" "}
+          <Link href={FUNDRAISING_URL}>my fundraising</Link> for pollinators.
         </DialogDescription>
       </DialogHeader>
       <p className="text-base text-muted-foreground">
