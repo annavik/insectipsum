@@ -12,6 +12,7 @@ const MIN_SIZE = 1
 const MAX_SIZE = 1024
 
 export const Photos = () => {
+  const [generating, setGenerating] = useState(false)
   const [photoUrl, setPhotoUrl] = useState(
     getPhotoUrl({ width: DEFAULT_WIDTH, height: DEFAULT_HEIGHT })
   )
@@ -35,7 +36,15 @@ export const Photos = () => {
 
           const width = e.target.width.value
           const height = e.target.height.value
-          setPhotoUrl(getPhotoUrl({ width, height }))
+          const newPhotoUrl = getPhotoUrl({ width, height })
+
+          if (newPhotoUrl === photoUrl) {
+            // Simulate loading
+            setGenerating(true)
+            setTimeout(() => setGenerating(false), 200)
+          } else {
+            setPhotoUrl(getPhotoUrl({ width, height }))
+          }
         }}
       >
         <Field>
@@ -74,25 +83,25 @@ export const Photos = () => {
           <CopyButton text={photoUrl} />
         </div>
       </div>
-      <Image src={photoUrl} />
+      <Image generating={generating} src={photoUrl} />
     </div>
   )
 }
 
-const Image = ({ src }: { src: string }) => {
+const Image = ({ generating, src }: { generating: boolean; src: string }) => {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => setLoading(true), [src])
 
   return (
     <div className="relative flex min-h-24 items-center justify-center overflow-hidden rounded-lg border bg-muted">
-      {loading ? (
+      {generating || loading ? (
         <Loader2Icon className="absolute z-1 size-12 animate-spin text-foreground" />
       ) : null}
       <img
         alt=""
         className={cn("max-h-full max-w-full", {
-          "opacity-50": loading,
+          "opacity-50": generating || loading,
         })}
         src={src}
         onLoad={() => setLoading(false)}
