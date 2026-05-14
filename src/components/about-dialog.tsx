@@ -37,8 +37,9 @@ export const AboutDialog = () => (
         To keep the tool lightweight, text and images are served without AI, but
         the text word bank was set up with some AI help. Text and images are
         available via the web interface and the API. Both are served on demand
-        and not stored. Images are cached for one hour. For technical details,
-        check out the <Link href={GITHUB_REPO_URL}>code repo</Link>.
+        and not permanently stored. Images are cached for one hour. For
+        technical details, check out the{" "}
+        <Link href={GITHUB_REPO_URL}>code repo</Link>.
       </p>
       <p className="text-base text-muted-foreground">
         The stickers in the header come from{" "}

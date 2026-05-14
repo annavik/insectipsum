@@ -24,9 +24,9 @@ export const Photos = () => {
           Photos
         </h1>
         <p className="text-sm text-muted-foreground">
-          Specify image size, generate a photo and save it! You can also use the
-          URL. Images are served on demand and not stored. They are cached for
-          one hour.
+          Specify image size, generate a photo and save it! You can also access
+          images directly from the URL. Images are served on demand and cached
+          for one hour. They are not permanently stored.
         </p>
       </div>
       <form
