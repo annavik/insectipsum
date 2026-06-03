@@ -1,3 +1,10 @@
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 import { cn, getPhotoUrl } from "@/lib/utils"
 import { ExternalLinkIcon, Loader2Icon } from "lucide-react"
 import { useEffect, useState } from "react"
@@ -6,15 +13,21 @@ import { Field, FieldLabel } from "./field"
 import { Button, buttonVariants } from "./ui/button"
 import { Input } from "./ui/input"
 
-const DEFAULT_WIDTH = 200
 const DEFAULT_HEIGHT = 300
-const MIN_SIZE = 1
+const DEFAULT_IMAGE_ID = -1 // Random image
+const DEFAULT_WIDTH = 200
 const MAX_SIZE = 1024
+const MIN_SIZE = 1
+const NUM_IMAGES = 16
 
 export const Photos = () => {
   const [generating, setGenerating] = useState(false)
   const [photoUrl, setPhotoUrl] = useState(
-    getPhotoUrl({ width: DEFAULT_WIDTH, height: DEFAULT_HEIGHT })
+    getPhotoUrl({
+      width: DEFAULT_WIDTH,
+      height: DEFAULT_HEIGHT,
+      imageId: DEFAULT_IMAGE_ID,
+    })
   )
 
   return (
@@ -36,14 +49,15 @@ export const Photos = () => {
 
           const width = e.target.width.value
           const height = e.target.height.value
-          const newPhotoUrl = getPhotoUrl({ width, height })
+          const imageId = e.target.image.value
+          const newPhotoUrl = getPhotoUrl({ width, height, imageId })
 
           if (newPhotoUrl === photoUrl) {
             // Simulate loading
             setGenerating(true)
             setTimeout(() => setGenerating(false), 200)
           } else {
-            setPhotoUrl(getPhotoUrl({ width, height }))
+            setPhotoUrl(newPhotoUrl)
           }
         }}
       >
@@ -70,6 +84,26 @@ export const Photos = () => {
             required
             type="number"
           />
+        </Field>
+        <Field>
+          <FieldLabel htmlFor="image">Image</FieldLabel>
+          <Select defaultValue={`${DEFAULT_IMAGE_ID}`} name="image">
+            <SelectTrigger>
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value={`${DEFAULT_IMAGE_ID}`}>Random</SelectItem>
+              {Array.from({ length: NUM_IMAGES }).map((_, index) => {
+                const value = `${index + 1}`
+
+                return (
+                  <SelectItem key={value} value={value}>
+                    Image {value}
+                  </SelectItem>
+                )
+              })}
+            </SelectContent>
+          </Select>
         </Field>
         <Button>Generate</Button>
       </form>

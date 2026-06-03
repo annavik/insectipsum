@@ -1,7 +1,6 @@
 import {
   Select,
   SelectContent,
-  SelectGroup,
   SelectItem,
   SelectTrigger,
   SelectValue,
@@ -66,13 +65,11 @@ export const Text = () => {
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectGroup>
-                {TYPES.map((type) => (
-                  <SelectItem key={type.value} value={type.value}>
-                    {type.label}
-                  </SelectItem>
-                ))}
-              </SelectGroup>
+              {TYPES.map((type) => (
+                <SelectItem key={type.value} value={type.value}>
+                  {type.label}
+                </SelectItem>
+              ))}
             </SelectContent>
           </Select>
         </Field>

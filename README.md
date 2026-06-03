@@ -24,8 +24,8 @@ http://insectipsum.com/
 
 **Parameters**:
 
-- `:type` – The type of content to generate: `paragraphs`, `sentences`, or `words`
-- `:count` – The number of items to generate (1–100)
+- `type` – The type of content to generate: `paragraphs`, `sentences`, or `words`
+- `count` – The number of items to generate (1–100)
 
 **Example**: https://insectipsum.com/text/paragraphs/3
 
@@ -35,10 +35,14 @@ http://insectipsum.com/
 
 **Parameters**:
 
-- `:width` – Image width in pixels (1–1024)
-- `:height` – Image height in pixels (1–1024)
+- `width` – Image width in pixels (1–1024)
+- `height` – Image height in pixels (1–1024)
+- `image_id` – Optional query param to use a specific image (1–16)
 
-**Example**: https://insectipsum.com/photos/200/300
+**Examples**:
+
+- Random image: https://insectipsum.com/photos/200/300
+- Specific image: https://insectipsum.com/photos/200/300?image_id=1
 
 ## Local development
 

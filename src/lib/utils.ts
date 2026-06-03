@@ -10,7 +10,13 @@ export const getTextUrl = ({ count, type }: { count: number; type: string }) =>
 export const getPhotoUrl = ({
   width,
   height,
+  imageId,
 }: {
   width: number
   height: number
-}) => `${API_URL}photos/${width}/${height}`
+  imageId: number
+}) => {
+  const baseUrl = `${API_URL}photos/${width}/${height}`
+
+  return imageId > 0 ? `${baseUrl}?image_id=${imageId}` : baseUrl
+}
